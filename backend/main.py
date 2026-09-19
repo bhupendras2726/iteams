@@ -1,5 +1,7 @@
 from fastapi import FastAPI
-
+from models.salesman import Salesman
+from models.sales_performance import SalesPerformance
+from models.leave_records import LeaveRecord
 
 
 

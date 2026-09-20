@@ -54,16 +54,18 @@ class Salesman(Base):
 
     created_at: Mapped[datetime] = mapped_column(
         DateTime,
-        default=datetime.now(), nullable= False
+        default=datetime.now, nullable= False
     )
 
     # Relationships
     performances = relationship(
         "SalesPerformance",
-        back_populates="salesman"
+        back_populates="salesman",
+        cascade="all, delete-orphan"
     )
 
     leave_records = relationship(
-        "LeaveRecord",
-        back_populates="salesman"
-    )
+    "LeaveRecord",
+    back_populates="salesman",
+    cascade="all, delete-orphan"
+)

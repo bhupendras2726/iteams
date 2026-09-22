@@ -69,3 +69,9 @@ class Salesman(Base):
     back_populates="salesman",
     cascade="all, delete-orphan"
 )
+    attendance_records = relationship(
+    "Attendance",
+    back_populates="salesman",
+    cascade="all, delete-orphan"
+)
+

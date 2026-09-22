@@ -14,6 +14,7 @@ from database import Base
 from models.salesman import Salesman
 from models.sales_performance import SalesPerformance
 from models.leave_records import LeaveRecord
+from models.Attendance import Attendance
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

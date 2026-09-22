@@ -1,7 +1,7 @@
 from datetime import datetime
 from decimal import Decimal
 
-from sqlalchemy import DateTime, ForeignKey, Integer, Numeric, String
+from sqlalchemy import DateTime, ForeignKey, Integer, Numeric, String,UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from database import Base
@@ -9,6 +9,14 @@ from database import Base
 
 class SalesPerformance(Base):
     __tablename__ = "sales_performance"
+
+    __table_args__ = (
+        UniqueConstraint(
+            "salesman_id",
+            "period",
+            name="uq_salesman_performance_period"
+        ),
+    )
 
     id: Mapped[int] = mapped_column(
         Integer,
@@ -39,10 +47,10 @@ class SalesPerformance(Base):
 
     created_at: Mapped[datetime] = mapped_column(
         DateTime,
-        default=datetime.now(), nullable= False
+        default=datetime.now,
+        nullable=False
     )
 
-    # Relationship
     salesman = relationship(
         "Salesman",
         back_populates="performances"

@@ -35,10 +35,18 @@ from schemas.salesman import (
 )
 from database import get_db
 
+from routes import prediction
+
 
 app = FastAPI(title="iTeams API",
     description="HR and Salesman Management API",
     version="1.0.0")
+app.include_router(
+    prediction.router,
+    prefix="/ml",
+    tags=["Machine Learning"]
+
+)
 
 app.add_middleware(
     CORSMiddleware,
@@ -729,3 +737,10 @@ def delete_leave_record(
     db.commit()
 
     return None
+
+app.include_router(
+    prediction.router,
+    prefix="/ml",
+    tags=["Machine Learning"]
+
+)

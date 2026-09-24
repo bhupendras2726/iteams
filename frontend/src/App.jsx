@@ -9,7 +9,11 @@ import Performance from "./pages/Performance";
 import LeaveManagement from "./pages/LeaveManagement";
 import Attendance from "./pages/Attendance";
 
-
+import SalesPrediction from "./pages/SalesPrediction";
+<Route
+    path="/sales-prediction"
+    element={<SalesPrediction />}
+/>
 function App() {
     return (
         <BrowserRouter>
@@ -46,6 +50,10 @@ function App() {
                         <Route
                             path="/attendance"
                             element={<Attendance />}
+                        />
+                        <Route
+                            path="/sales-prediction"
+                            element={<SalesPrediction />}
                         />
 
                     </Routes>

@@ -40,6 +40,11 @@ function Sidebar() {
                             Attendance
                         </Link>
                     </li>
+                    <li>
+                        <Link to="/sales-prediction">
+                            Sales Prediction
+                        </Link>
+                    </li>
 
                 </ul>
 

@@ -10,10 +10,7 @@ import LeaveManagement from "./pages/LeaveManagement";
 import Attendance from "./pages/Attendance";
 
 import SalesPrediction from "./pages/SalesPrediction";
-<Route
-    path="/sales-prediction"
-    element={<SalesPrediction />}
-/>
+
 function App() {
     return (
         <BrowserRouter>

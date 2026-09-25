@@ -3,6 +3,7 @@ from fastapi import FastAPI, Depends ,HTTPException, Query
 from models.salesman import Salesman
 from models.sales_performance import SalesPerformance
 from models.leave_records import LeaveRecord
+from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError 
 from sqlalchemy import or_
 from models.sales_performance import SalesPerformance

@@ -1,7 +1,7 @@
 function Dashboard() {
     return (
         <div>
-            <h1>Dashboard</h1>
+            <h1>Live Dashboard </h1>
 
             <p>
                 Welcome to the iTeams Salesman Management System.

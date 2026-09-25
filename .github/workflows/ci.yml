@@ -1,5 +1,4 @@
-
-name: iTeams CI
+name: iTeams CI/CD
 
 on:
   push:
@@ -8,6 +7,10 @@ on:
   pull_request:
     branches:
       - main
+
+permissions:
+  contents: read
+  packages: write
 
 jobs:
 
@@ -59,3 +62,39 @@ jobs:
         working-directory: frontend
         run: npm run build
 
+
+  docker:
+    name: Build and Push Docker Images
+    runs-on: ubuntu-latest
+    needs:
+      - backend
+      - frontend
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push backend image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./backend
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/iteams-backend:latest
+            ghcr.io/${{ github.repository_owner }}/iteams-backend:${{ github.sha }}
+
+      - name: Build and push frontend image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./frontend
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/iteams-frontend:latest
+            ghcr.io/${{ github.repository_owner }}/iteams-frontend:${{ github.sha }}
